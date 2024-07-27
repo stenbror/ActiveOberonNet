@@ -1,4 +1,4 @@
 # Active Oberon.Net Compiler
 
-dotnet build
+dotnet build <br />
 dotnet test
