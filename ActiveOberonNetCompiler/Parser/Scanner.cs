@@ -148,7 +148,7 @@ namespace ActiveOberonNetCompiler.Parser
                 "incl" or "INCL" => new Incl(start, end, trivias),
                 "incmul" or "INCMUL" => new IncMul(start, end, trivias),
                 "incr" or "INCR" => new Incr(start, end, trivias),
-                "integer" or "Integer" => new Integer(start, end, trivias),
+                "integer" or "INTEGER" => new Integer(start, end, trivias),
                 "integerset" or "INTEGERSET" => new IntegerSet(start, end, trivias),
                 "last" or "LAST" => new Last(start, end, trivias),
                 "len" or "LEN" => new Len(start, end, trivias),
