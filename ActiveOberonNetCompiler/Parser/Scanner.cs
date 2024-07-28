@@ -1,8 +1,17 @@
 ﻿
 namespace ActiveOberonNetCompiler.Parser
 {
-    public  class Scanner
+    public class Scanner(string source, string moduleName = "")
     {
+        private readonly string _moduleName = moduleName;
+        private readonly string _source = source;
+        private int _index = 0;
+        private List<Trivia> _trivias = new List<Trivia>();
+
+        public Symbols Symbol { get; private set; } = new EndOfFile(0, []);
+
+        public uint Position { get; private set; } = 0;
+
         public static Tuple<Symbols, uint> IsOperatorOrDelimiters(char c1, char c2, char c3, uint start, uint end,
             Trivia[] trivias) =>
             (c1, c2, c3) switch
@@ -174,6 +183,21 @@ namespace ActiveOberonNetCompiler.Parser
                 "unsigned64" or "INSIGNED64" => new Unsigned64(start, end, trivias),
                 _ => new Ident(start, end, trivias, text)
             };
+
+        private char GetChar() => _index + 1 < _source.Length ? _source[_index] : '\0';
+
+        private (char, char, char) GetThreeChars() => 
+            _index + 3 < _source.Length ? (_source[_index], _source[_index + 1], _source[_index + 2]) :
+            _index + 2 < _source.Length ? (_source[_index], _source[_index + 1], '\0') :
+            _index + 1 < _source.Length ? (_source[_index], '\0', '\0') : ('\0', '\0', '\0');
+
+        private void NextChar(int steps = 1) => _index += steps;
+        
+
+        public void Advance(bool advance = true)
+        {
+
+        }
 
     }
 }
