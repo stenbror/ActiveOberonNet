@@ -63,6 +63,23 @@ namespace TestActiveOberonNetCompiler.Parser
         }
 
         [Fact]
+        public void TestScannerIdent()
+        {
+            var scanner = new Scanner("__Test3__");
+            scanner.Advance();
+            Assert.IsType<Ident>(scanner.Symbol);
+            Assert.Equal(0u, scanner.Position);
+
+            Assert.Equal(0u, scanner.Position);
+            Assert.Equal(0u, scanner.Symbol.StartPos);
+            Assert.Equal(9u, scanner.Symbol.EndPos);
+            Assert.Equal([], scanner.Symbol.Trivias);
+
+            var res = scanner.Symbol as Ident;
+            Assert.Equal("__Test3__", res?.text);
+        }
+
+        [Fact]
         public void TestScannerOperator()
         {
             var scanner = new Scanner(".<=");
