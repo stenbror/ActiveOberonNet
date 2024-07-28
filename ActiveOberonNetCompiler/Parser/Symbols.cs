@@ -112,6 +112,7 @@ namespace ActiveOberonNetCompiler.Parser
     public record Ror(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Rot(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Set(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
+    public record Set8(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Set16(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Set32(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Set64(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
@@ -123,7 +124,7 @@ namespace ActiveOberonNetCompiler.Parser
     public record Signed16(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Signed32(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Signed64(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
-    public record Sizeof(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
+    public record SizeOf(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Sum(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Unsigned8(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
     public record Unsigned16(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
