@@ -111,5 +111,17 @@ namespace TestActiveOberonNetCompiler.Parser
             var trivias = scanner.Symbol.Trivias;
             Assert.Equal([ new WhiteSpaceTrivia(0, 5) ], trivias);
         }
+
+        [Fact]
+        public void TestKeywordWithComment()
+        {
+            var scanner = new Scanner("(* This is (* a test *) in Active Oberon *)Test");
+            scanner.Advance();
+            Assert.IsType<Ident>(scanner.Symbol);
+            Assert.Equal(43u, scanner.Position);
+
+            var trivias = scanner.Symbol.Trivias;
+            Assert.Equal([new CommentTrivia(0, 43, "(* This is (* a test *) in Active Oberon *)")], trivias);
+        }
     }
 }

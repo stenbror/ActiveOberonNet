@@ -199,9 +199,10 @@ namespace ActiveOberonNetCompiler.Parser
         public void Advance(bool advance = true)
         {
             /* Handle whitespace as trivia */
-            while (GetChar() == ' ' || GetChar() == '\t' || GetChar() == '\r' || GetChar() == '\n' || GetChar() == '/')
+            while (GetChar() == ' ' || GetChar() == '\t' || GetChar() == '\r' || GetChar() == '\n' || GetChar() == '(')
             {
                 var pos = _index;
+                var loops = 0;
                 switch (GetChar())
                 {
                     case ' ':
@@ -230,6 +231,40 @@ namespace ActiveOberonNetCompiler.Parser
                         break;
 
                     default:
+                        var (a, b, _ ) = GetThreeChars();
+                        if (a == '(' && b == '*')
+                        {
+                            NextChar(2);
+                            loops++;
+
+                            while (loops != 0 && GetChar() != '\0')
+                            {
+                                if (GetChar() == '*')
+                                {
+                                    NextChar();
+                                    if (GetChar() == ')')
+                                    {
+                                        NextChar();
+                                        loops--;
+                                    }
+                                }
+                                else if (GetChar() == '(')
+                                {
+                                    NextChar();
+                                    if (GetChar() == '*')
+                                    {
+                                        NextChar();
+                                        loops++;
+                                    }
+                                }
+                                else NextChar();
+                            }
+
+                            if (loops != 0)
+                                throw new SyntaxError(Position, _moduleName, "Unterminated comment(s) in source code!");
+
+                            _trivias.Add(new CommentTrivia((uint)pos, (uint)_index, _source.Substring(pos, _index - pos)));
+                        }
                         break;
                 }
             }
