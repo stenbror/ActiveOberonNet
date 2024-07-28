@@ -198,6 +198,42 @@ namespace ActiveOberonNetCompiler.Parser
 
         public void Advance(bool advance = true)
         {
+            /* Handle whitespace as trivia */
+            while (GetChar() == ' ' || GetChar() == '\t' || GetChar() == '\r' || GetChar() == '\n' || GetChar() == '/')
+            {
+                var pos = _index;
+                switch (GetChar())
+                {
+                    case ' ':
+                        while (GetChar() == ' ') NextChar();
+                        _trivias.Add(new WhiteSpaceTrivia((uint)pos, (uint)_index));
+                        break;
+
+                    case '\t':
+                        while (GetChar() == '\t') NextChar();
+                        _trivias.Add(new TabTrivia((uint)pos, (uint)_index));
+                        break;
+
+                    case '\r':
+                        NextChar();
+                        if (GetChar() == '\n')
+                        {
+                            NextChar();
+                            _trivias.Add(new NewlineTrivia((uint)pos, (uint)_index, '\r', '\n'));
+                        }
+                        else _trivias.Add(new NewlineTrivia((uint)pos, (uint)_index, '\r', ' '));
+                        break;
+
+                    case '\n':
+                        NextChar();
+                        _trivias.Add(new NewlineTrivia((uint)pos, (uint)_index, '\r', ' '));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
             Position = (uint)_index;
 
             /* Handle reserved keyword or identifiers */

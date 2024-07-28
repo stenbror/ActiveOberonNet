@@ -99,5 +99,17 @@ namespace TestActiveOberonNetCompiler.Parser
             Assert.IsType<EndOfFile>(scanner.Symbol);
             Assert.Equal(0u, scanner.Position);
         }
+
+        [Fact]
+        public void TestKeywordWithWhitespace()
+        {
+            var scanner = new Scanner("     Test");
+            scanner.Advance();
+            Assert.IsType<Ident>(scanner.Symbol);
+            Assert.Equal(5u, scanner.Position);
+
+            var trivias = scanner.Symbol.Trivias;
+            Assert.Equal([ new WhiteSpaceTrivia(0, 5) ], trivias);
+        }
     }
 }
