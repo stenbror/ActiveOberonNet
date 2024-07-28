@@ -3,6 +3,50 @@ namespace ActiveOberonNetCompiler.Parser
 {
     public  class Scanner
     {
+        public static Tuple<Symbols, uint> IsOperatorOrDelimiters(char c1, char c2, char c3, uint start, uint end,
+            Trivia[] trivias) =>
+            (c1, c2, c3) switch
+            {
+                ( '.', '<', '=' ) => new Tuple<Symbols, uint>(new DotLessEqual(start, end, trivias), 3),
+                ( '.', '>', '=') => new Tuple<Symbols, uint>(new DotGreaterEqual(start, end, trivias), 3),
+                ( '.', '#', _ ) => new Tuple<Symbols, uint>(new DotNotEqual(start, end, trivias), 2),
+                ( '.', '=', _ ) => new Tuple<Symbols, uint>(new DotEqual(start, end, trivias), 2),
+                ( '.', '<', _ ) => new Tuple<Symbols, uint>(new DotLess(start, end, trivias), 2),
+                ( '.', '>', _ ) => new Tuple<Symbols, uint>(new DotGreater(start, end, trivias), 2),
+                ( '.', '*', _ ) => new Tuple<Symbols, uint>(new DotMul(start, end, trivias), 2),
+                ( '.', '/', _ ) => new Tuple<Symbols, uint>(new DotSlash(start, end, trivias), 2),
+                ( '.', '.', _ ) => new Tuple<Symbols, uint>(new UpTo(start, end, trivias), 2),
+                ( '.', _ , _ ) => new Tuple<Symbols, uint>(new Period(start, end, trivias), 1),
+                ( ':', '=', _ ) => new Tuple<Symbols, uint>(new Assign(start, end, trivias), 2),
+                ( ':', _ , _ ) => new Tuple<Symbols, uint>(new Colon(start, end, trivias), 1),
+                ( '>', '=', _ ) => new Tuple<Symbols, uint>(new GreaterEqual(start, end, trivias), 2),
+                ( '>', _, _ ) => new Tuple<Symbols, uint>(new Greater(start, end, trivias), 1),
+                ( '<', '=', _ ) => new Tuple<Symbols, uint>(new LessEqual(start, end, trivias), 2),
+                ( '<', _ , _ ) => new Tuple<Symbols, uint>(new Less(start, end, trivias), 1),
+                ( '+', '*', _ ) => new Tuple<Symbols, uint>(new PlusMul(start, end, trivias), 2),
+                ( '+', _ , _ ) => new Tuple<Symbols, uint>(new Plus(start, end, trivias), 1),
+                ( '*', '*', _ ) => new Tuple<Symbols, uint>(new Power(start, end, trivias), 2),
+                ( '*', _ , _ ) => new Tuple<Symbols, uint>(new Mul(start, end, trivias), 1),
+                ( '(', _ , _ ) => new Tuple<Symbols, uint>(new LeftParen(start, end, trivias), 1),
+                ( '[', _, _ ) => new Tuple<Symbols, uint>(new LeftBracket(start, end, trivias), 1),
+                ( '{', _, _ ) => new Tuple<Symbols, uint>(new LeftCurly(start, end, trivias), 1),
+                ( ')', _, _ ) => new Tuple<Symbols, uint>(new RightParen(start, end, trivias), 1),
+                ( ']', _, _ ) => new Tuple<Symbols, uint>(new RightBracket(start, end, trivias), 1),
+                ( '}', _, _ ) => new Tuple<Symbols, uint>(new RightCurly(start, end, trivias), 1),
+                ( '/', _, _ ) => new Tuple<Symbols, uint>(new Slash(start, end, trivias), 1),
+                ( '\\', _, _ ) => new Tuple<Symbols, uint>(new BackSlash(start, end, trivias), 1),
+                ( '´', _, _ ) => new Tuple<Symbols, uint>(new BackQuote(start, end, trivias), 1),
+                ( '-', _, _ ) => new Tuple<Symbols, uint>(new Minus(start, end, trivias), 1),
+                ( '?', _, _ ) => new Tuple<Symbols, uint>(new QuestionMark(start, end, trivias), 1),
+                ( '&', _, _ ) => new Tuple<Symbols, uint>(new And(start, end, trivias), 1),
+                ( '~', _, _ ) => new Tuple<Symbols, uint>(new Invert(start, end, trivias), 1),
+                ( '^', _, _ ) => new Tuple<Symbols, uint>(new Xor(start, end, trivias), 1),
+                ( '#', _, _ ) => new Tuple<Symbols, uint>(new NotEqual(start, end, trivias), 1),
+                ( '=', _, _ ) => new Tuple<Symbols, uint>(new Equal(start, end, trivias), 1),
+                ( ';', _, _) => new Tuple<Symbols, uint>(new SemiColon(start, end, trivias), 1),
+                ( ',', _, _) => new Tuple<Symbols, uint>(new Comma(start, end, trivias), 1),
+                _ => new Tuple<Symbols, uint>(new Empty(), 0)
+            };
 
         public static Symbols IsReservedKeyword(string text, uint start, uint end, Trivia[] trivias) =>
             text switch

@@ -7,6 +7,24 @@ namespace TestActiveOberonNetCompiler.Parser
     public class TestScanner
     {
         [Fact]
+        public void TestOperatorOrDelimiter_DotLessEqual()
+        {
+            var res = Scanner.IsOperatorOrDelimiters('.', '<', '=', 0, 3, []);
+            Assert.IsType<DotLessEqual>(res.Item1);
+            Assert.Equal(new Tuple<Symbols, uint>(new DotLessEqual(0, 3, []), 3), res);
+        }
+
+        [Fact]
+        public void TestOperatorOrDelimiter_DotGreaterEqual()
+        {
+            var res = Scanner.IsOperatorOrDelimiters('.', '>', '=', 0, 3, []);
+            Assert.IsType<DotGreaterEqual>(res.Item1);
+            Assert.Equal(new Tuple<Symbols, uint>(new DotGreaterEqual(0, 3, []), 3), res);
+        }
+
+
+
+        [Fact]
         public void TestReservedKeyword_Address()
         {
             var lower = Scanner.IsReservedKeyword("address", 0, 7, []);
