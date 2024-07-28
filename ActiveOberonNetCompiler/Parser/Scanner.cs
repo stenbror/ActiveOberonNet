@@ -1,4 +1,6 @@
 ﻿
+using System.Text;
+
 namespace ActiveOberonNetCompiler.Parser
 {
     public class Scanner(string source, string moduleName = "")
@@ -12,48 +14,48 @@ namespace ActiveOberonNetCompiler.Parser
 
         public uint Position { get; private set; } = 0;
 
-        public static Tuple<Symbols, uint> IsOperatorOrDelimiters(char c1, char c2, char c3, uint start, uint end,
+        public static Tuple<Symbols, uint> IsOperatorOrDelimiters(char c1, char c2, char c3, uint start,
             Trivia[] trivias) =>
             (c1, c2, c3) switch
             {
-                ( '.', '<', '=' ) => new Tuple<Symbols, uint>(new DotLessEqual(start, end, trivias), 3),
-                ( '.', '>', '=') => new Tuple<Symbols, uint>(new DotGreaterEqual(start, end, trivias), 3),
-                ( '.', '#', _ ) => new Tuple<Symbols, uint>(new DotNotEqual(start, end, trivias), 2),
-                ( '.', '=', _ ) => new Tuple<Symbols, uint>(new DotEqual(start, end, trivias), 2),
-                ( '.', '<', _ ) => new Tuple<Symbols, uint>(new DotLess(start, end, trivias), 2),
-                ( '.', '>', _ ) => new Tuple<Symbols, uint>(new DotGreater(start, end, trivias), 2),
-                ( '.', '*', _ ) => new Tuple<Symbols, uint>(new DotMul(start, end, trivias), 2),
-                ( '.', '/', _ ) => new Tuple<Symbols, uint>(new DotSlash(start, end, trivias), 2),
-                ( '.', '.', _ ) => new Tuple<Symbols, uint>(new UpTo(start, end, trivias), 2),
-                ( '.', _ , _ ) => new Tuple<Symbols, uint>(new Period(start, end, trivias), 1),
-                ( ':', '=', _ ) => new Tuple<Symbols, uint>(new Assign(start, end, trivias), 2),
-                ( ':', _ , _ ) => new Tuple<Symbols, uint>(new Colon(start, end, trivias), 1),
-                ( '>', '=', _ ) => new Tuple<Symbols, uint>(new GreaterEqual(start, end, trivias), 2),
-                ( '>', _, _ ) => new Tuple<Symbols, uint>(new Greater(start, end, trivias), 1),
-                ( '<', '=', _ ) => new Tuple<Symbols, uint>(new LessEqual(start, end, trivias), 2),
-                ( '<', _ , _ ) => new Tuple<Symbols, uint>(new Less(start, end, trivias), 1),
-                ( '+', '*', _ ) => new Tuple<Symbols, uint>(new PlusMul(start, end, trivias), 2),
-                ( '+', _ , _ ) => new Tuple<Symbols, uint>(new Plus(start, end, trivias), 1),
-                ( '*', '*', _ ) => new Tuple<Symbols, uint>(new Power(start, end, trivias), 2),
-                ( '*', _ , _ ) => new Tuple<Symbols, uint>(new Mul(start, end, trivias), 1),
-                ( '(', _ , _ ) => new Tuple<Symbols, uint>(new LeftParen(start, end, trivias), 1),
-                ( '[', _, _ ) => new Tuple<Symbols, uint>(new LeftBracket(start, end, trivias), 1),
-                ( '{', _, _ ) => new Tuple<Symbols, uint>(new LeftCurly(start, end, trivias), 1),
-                ( ')', _, _ ) => new Tuple<Symbols, uint>(new RightParen(start, end, trivias), 1),
-                ( ']', _, _ ) => new Tuple<Symbols, uint>(new RightBracket(start, end, trivias), 1),
-                ( '}', _, _ ) => new Tuple<Symbols, uint>(new RightCurly(start, end, trivias), 1),
-                ( '/', _, _ ) => new Tuple<Symbols, uint>(new Slash(start, end, trivias), 1),
-                ( '\\', _, _ ) => new Tuple<Symbols, uint>(new BackSlash(start, end, trivias), 1),
-                ( '´', _, _ ) => new Tuple<Symbols, uint>(new BackQuote(start, end, trivias), 1),
-                ( '-', _, _ ) => new Tuple<Symbols, uint>(new Minus(start, end, trivias), 1),
-                ( '?', _, _ ) => new Tuple<Symbols, uint>(new QuestionMark(start, end, trivias), 1),
-                ( '&', _, _ ) => new Tuple<Symbols, uint>(new And(start, end, trivias), 1),
-                ( '~', _, _ ) => new Tuple<Symbols, uint>(new Invert(start, end, trivias), 1),
-                ( '^', _, _ ) => new Tuple<Symbols, uint>(new Xor(start, end, trivias), 1),
-                ( '#', _, _ ) => new Tuple<Symbols, uint>(new NotEqual(start, end, trivias), 1),
-                ( '=', _, _ ) => new Tuple<Symbols, uint>(new Equal(start, end, trivias), 1),
-                ( ';', _, _) => new Tuple<Symbols, uint>(new SemiColon(start, end, trivias), 1),
-                ( ',', _, _) => new Tuple<Symbols, uint>(new Comma(start, end, trivias), 1),
+                ( '.', '<', '=' ) => new Tuple<Symbols, uint>(new DotLessEqual(start, start +3, trivias), 3),
+                ( '.', '>', '=') => new Tuple<Symbols, uint>(new DotGreaterEqual(start, start + 3, trivias), 3),
+                ( '.', '#', _ ) => new Tuple<Symbols, uint>(new DotNotEqual(start, start + 2, trivias), 2),
+                ( '.', '=', _ ) => new Tuple<Symbols, uint>(new DotEqual(start, start + 2, trivias), 2),
+                ( '.', '<', _ ) => new Tuple<Symbols, uint>(new DotLess(start, start + 2, trivias), 2),
+                ( '.', '>', _ ) => new Tuple<Symbols, uint>(new DotGreater(start, start + 2, trivias), 2),
+                ( '.', '*', _ ) => new Tuple<Symbols, uint>(new DotMul(start, start + 2, trivias), 2),
+                ( '.', '/', _ ) => new Tuple<Symbols, uint>(new DotSlash(start, start + 2, trivias), 2),
+                ( '.', '.', _ ) => new Tuple<Symbols, uint>(new UpTo(start, start + 2, trivias), 2),
+                ( '.', _ , _ ) => new Tuple<Symbols, uint>(new Period(start, start + 1, trivias), 1),
+                ( ':', '=', _ ) => new Tuple<Symbols, uint>(new Assign(start, start + 2, trivias), 2),
+                ( ':', _ , _ ) => new Tuple<Symbols, uint>(new Colon(start, start + 1, trivias), 1),
+                ( '>', '=', _ ) => new Tuple<Symbols, uint>(new GreaterEqual(start, start + 2, trivias), 2),
+                ( '>', _, _ ) => new Tuple<Symbols, uint>(new Greater(start, start + 1, trivias), 1),
+                ( '<', '=', _ ) => new Tuple<Symbols, uint>(new LessEqual(start, start + 2, trivias), 2),
+                ( '<', _ , _ ) => new Tuple<Symbols, uint>(new Less(start, start + 1, trivias), 1),
+                ( '+', '*', _ ) => new Tuple<Symbols, uint>(new PlusMul(start, start + 2, trivias), 2),
+                ( '+', _ , _ ) => new Tuple<Symbols, uint>(new Plus(start, start + 1, trivias), 1),
+                ( '*', '*', _ ) => new Tuple<Symbols, uint>(new Power(start, start + 2, trivias), 2),
+                ( '*', _ , _ ) => new Tuple<Symbols, uint>(new Mul(start, start + 1, trivias), 1),
+                ( '(', _ , _ ) => new Tuple<Symbols, uint>(new LeftParen(start, start + 1, trivias), 1),
+                ( '[', _, _ ) => new Tuple<Symbols, uint>(new LeftBracket(start, start + 1, trivias), 1),
+                ( '{', _, _ ) => new Tuple<Symbols, uint>(new LeftCurly(start, start + 1, trivias), 1),
+                ( ')', _, _ ) => new Tuple<Symbols, uint>(new RightParen(start, start + 1, trivias), 1),
+                ( ']', _, _ ) => new Tuple<Symbols, uint>(new RightBracket(start, start + 1, trivias), 1),
+                ( '}', _, _ ) => new Tuple<Symbols, uint>(new RightCurly(start, start + 1, trivias), 1),
+                ( '/', _, _ ) => new Tuple<Symbols, uint>(new Slash(start, start + 1, trivias), 1),
+                ( '\\', _, _ ) => new Tuple<Symbols, uint>(new BackSlash(start, start + 1, trivias), 1),
+                ( '´', _, _ ) => new Tuple<Symbols, uint>(new BackQuote(start, start + 1, trivias), 1),
+                ( '-', _, _ ) => new Tuple<Symbols, uint>(new Minus(start, start + 1, trivias), 1),
+                ( '?', _, _ ) => new Tuple<Symbols, uint>(new QuestionMark(start, start + 1, trivias), 1),
+                ( '&', _, _ ) => new Tuple<Symbols, uint>(new And(start, start + 1, trivias), 1),
+                ( '~', _, _ ) => new Tuple<Symbols, uint>(new Invert(start, start + 1, trivias), 1),
+                ( '^', _, _ ) => new Tuple<Symbols, uint>(new Xor(start, start + 1, trivias), 1),
+                ( '#', _, _ ) => new Tuple<Symbols, uint>(new NotEqual(start, start + 1, trivias), 1),
+                ( '=', _, _ ) => new Tuple<Symbols, uint>(new Equal(start, start + 1, trivias), 1),
+                ( ';', _, _) => new Tuple<Symbols, uint>(new SemiColon(start, start + 1, trivias), 1),
+                ( ',', _, _) => new Tuple<Symbols, uint>(new Comma(start, start + 1, trivias), 1),
                 _ => new Tuple<Symbols, uint>(new Empty(), 0)
             };
 
@@ -184,18 +186,47 @@ namespace ActiveOberonNetCompiler.Parser
                 _ => new Ident(start, end, trivias, text)
             };
 
-        private char GetChar() => _index + 1 < _source.Length ? _source[_index] : '\0';
+        private char GetChar() => _index < _source.Length ? _source[_index] : '\0';
 
         private (char, char, char) GetThreeChars() => 
-            _index + 3 < _source.Length ? (_source[_index], _source[_index + 1], _source[_index + 2]) :
-            _index + 2 < _source.Length ? (_source[_index], _source[_index + 1], '\0') :
-            _index + 1 < _source.Length ? (_source[_index], '\0', '\0') : ('\0', '\0', '\0');
+            _index + 2 < _source.Length ? (_source[_index], _source[_index + 1], _source[_index + 2]) :
+            _index + 1 < _source.Length ? (_source[_index], _source[_index + 1], '\0') :
+            _index < _source.Length ? (_source[_index], '\0', '\0') : ('\0', '\0', '\0');
 
         private void NextChar(int steps = 1) => _index += steps;
         
 
         public void Advance(bool advance = true)
         {
+            Position = (uint)_index;
+
+            /* Handle reserved keyword or identifiers */
+            if (char.IsLetter(GetChar()) || GetChar() == '_')
+            {
+                var builder = new StringBuilder();
+
+                while (char.IsLetterOrDigit(GetChar()) || GetChar() == '_')
+                {
+                    builder.Append(GetChar());
+                    NextChar();
+                }
+
+                Symbol = IsReservedKeyword(builder.ToString(), Position, (uint)_index, _trivias.ToArray());
+                _trivias = new List<Trivia>();
+
+                return;
+            }
+
+            /* Handle Operators or delimiters */
+            var (c1, c2, c3) = GetThreeChars();
+            var (symb, steps) = IsOperatorOrDelimiters(c1, c2, c3, Position, _trivias.ToArray());
+            if (symb is not Empty)
+            {
+                Symbol = symb;
+                NextChar((int)steps);
+
+                return;
+            }
 
         }
 
