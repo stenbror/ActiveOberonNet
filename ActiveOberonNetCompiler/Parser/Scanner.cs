@@ -224,10 +224,21 @@ namespace ActiveOberonNetCompiler.Parser
             {
                 Symbol = symb;
                 NextChar((int)steps);
+                _trivias = new List<Trivia>();
 
                 return;
             }
 
+
+            /* Check for end of file */
+            if (GetChar() == '\0')
+            {
+                Symbol = new EndOfFile(Position, _trivias.ToArray());
+
+                return;
+            }
+
+            throw new SyntaxError(Position, _moduleName, $"Illegal character '{GetChar()}'!");
         }
 
     }

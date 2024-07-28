@@ -73,5 +73,14 @@ namespace TestActiveOberonNetCompiler.Parser
             Assert.Equal(3u, scanner.Symbol.EndPos);
             Assert.Equal([], scanner.Symbol.Trivias);
         }
+
+        [Fact]
+        public void TestEndOfFile()
+        {
+            var scanner = new Scanner("");
+            scanner.Advance();
+            Assert.IsType<EndOfFile>(scanner.Symbol);
+            Assert.Equal(0u, scanner.Position);
+        }
     }
 }
