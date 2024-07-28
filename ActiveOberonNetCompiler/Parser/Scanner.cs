@@ -168,7 +168,7 @@ namespace ActiveOberonNetCompiler.Parser
                 "set" or "SET" => new Set(start, end, trivias),
                 "set8" or "SET8" => new Set8(start, end, trivias),
                 "set16" or "SET16" => new Set16(start, end, trivias),
-                "set32" or "SEt32" => new Set32(start, end, trivias),
+                "set32" or "SET32" => new Set32(start, end, trivias),
                 "set64" or "SET64" => new Set64(start, end, trivias),
                 "shl" or "SHL" => new Shl(start, end, trivias),
                 "short" or "SHORT" => new Short(start, end, trivias),
@@ -180,10 +180,10 @@ namespace ActiveOberonNetCompiler.Parser
                 "sizeof" or "SIZEOF" => new SizeOf(start, end, trivias),
                 "step" or "STEP" => new Step(start, end, trivias),
                 "sum" or "SUM" => new Sum(start, end, trivias),
-                "unsigned8" or "INSIGNED8" => new Unsigned8(start, end, trivias),
-                "unsigned16" or "INSIGNED16" => new Unsigned16(start, end, trivias),
-                "unsigned32" or "INSIGNED32" => new Unsigned32(start, end, trivias),
-                "unsigned64" or "INSIGNED64" => new Unsigned64(start, end, trivias),
+                "unsigned8" or "UNSIGNED8" => new Unsigned8(start, end, trivias),
+                "unsigned16" or "UNSIGNED16" => new Unsigned16(start, end, trivias),
+                "unsigned32" or "UNSIGNED32" => new Unsigned32(start, end, trivias),
+                "unsigned64" or "UNSIGNED64" => new Unsigned64(start, end, trivias),
                 _ => new Ident(start, end, trivias, text)
             };
 

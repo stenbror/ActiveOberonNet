@@ -1355,10 +1355,413 @@ namespace TestActiveOberonNetCompiler.Parser
             Assert.Equal(new IntegerSet(0, 11, []), higher);
         }
 
+        [Fact]
+        public void TestReservedMethods_Last()
+        {
+            var lower = Scanner.IsReservedKeyword("last", 0, 4, []);
+            Assert.IsType<Last>(lower);
+            Assert.Equal(new Last(0, 4, []), lower);
 
+            var higher = Scanner.IsReservedKeyword("LAST", 0, 4, []);
+            Assert.IsType<Last>(higher);
+            Assert.Equal(new Last(0, 4, []), higher);
+        }
 
+        [Fact]
+        public void TestReservedMethods_Len()
+        {
+            var lower = Scanner.IsReservedKeyword("len", 0, 3, []);
+            Assert.IsType<Len>(lower);
+            Assert.Equal(new Len(0, 3, []), lower);
 
+            var higher = Scanner.IsReservedKeyword("LEN", 0, 3, []);
+            Assert.IsType<Len>(higher);
+            Assert.Equal(new Len(0, 3, []), higher);
+        }
 
+        [Fact]
+        public void TestReservedMethods_Long()
+        {
+            var lower = Scanner.IsReservedKeyword("long", 0, 4, []);
+            Assert.IsType<Long>(lower);
+            Assert.Equal(new Long(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("LONG", 0, 4, []);
+            Assert.IsType<Long>(higher);
+            Assert.Equal(new Long(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_LongInteger()
+        {
+            var lower = Scanner.IsReservedKeyword("longinteger", 0, 11, []);
+            Assert.IsType<LongInteger>(lower);
+            Assert.Equal(new LongInteger(0, 11, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("LONGINTEGER", 0, 11, []);
+            Assert.IsType<LongInteger>(higher);
+            Assert.Equal(new LongInteger(0, 11, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Lsh()
+        {
+            var lower = Scanner.IsReservedKeyword("lsh", 0, 3, []);
+            Assert.IsType<Lsh>(lower);
+            Assert.Equal(new Lsh(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("LSH", 0, 3, []);
+            Assert.IsType<Lsh>(higher);
+            Assert.Equal(new Lsh(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Max()
+        {
+            var lower = Scanner.IsReservedKeyword("max", 0, 3, []);
+            Assert.IsType<Max>(lower);
+            Assert.Equal(new Max(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("MAX", 0, 3, []);
+            Assert.IsType<Max>(higher);
+            Assert.Equal(new Max(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Min()
+        {
+            var lower = Scanner.IsReservedKeyword("min", 0, 3, []);
+            Assert.IsType<Min>(lower);
+            Assert.Equal(new Min(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("MIN", 0, 3, []);
+            Assert.IsType<Min>(higher);
+            Assert.Equal(new Min(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Odd()
+        {
+            var lower = Scanner.IsReservedKeyword("odd", 0, 3, []);
+            Assert.IsType<Odd>(lower);
+            Assert.Equal(new Odd(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("ODD", 0, 3, []);
+            Assert.IsType<Odd>(higher);
+            Assert.Equal(new Odd(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Range()
+        {
+            var lower = Scanner.IsReservedKeyword("range", 0, 5, []);
+            Assert.IsType<ActiveOberonNetCompiler.Parser.Range>(lower);
+            Assert.Equal(new ActiveOberonNetCompiler.Parser.Range(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("RANGE", 0, 5, []);
+            Assert.IsType<ActiveOberonNetCompiler.Parser.Range>(higher);
+            Assert.Equal(new ActiveOberonNetCompiler.Parser.Range(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Re()
+        {
+            var lower = Scanner.IsReservedKeyword("re", 0, 2, []);
+            Assert.IsType<Re>(lower);
+            Assert.Equal(new Re(0, 2, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("RE", 0, 2, []);
+            Assert.IsType<Re>(higher);
+            Assert.Equal(new Re(0, 2, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Real()
+        {
+            var lower = Scanner.IsReservedKeyword("real", 0, 4, []);
+            Assert.IsType<Real>(lower);
+            Assert.Equal(new Real(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("REAL", 0, 4, []);
+            Assert.IsType<Real>(higher);
+            Assert.Equal(new Real(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Reshape()
+        {
+            var lower = Scanner.IsReservedKeyword("reshape", 0, 7, []);
+            Assert.IsType<Reshape>(lower);
+            Assert.Equal(new Reshape(0, 7, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("RESHAPE", 0, 7, []);
+            Assert.IsType<Reshape>(higher);
+            Assert.Equal(new Reshape(0, 7, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Rol()
+        {
+            var lower = Scanner.IsReservedKeyword("rol", 0, 3, []);
+            Assert.IsType<Rol>(lower);
+            Assert.Equal(new Rol(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("ROL", 0, 3, []);
+            Assert.IsType<Rol>(higher);
+            Assert.Equal(new Rol(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Ror()
+        {
+            var lower = Scanner.IsReservedKeyword("ror", 0, 3, []);
+            Assert.IsType<Ror>(lower);
+            Assert.Equal(new Ror(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("ROR", 0, 3, []);
+            Assert.IsType<Ror>(higher);
+            Assert.Equal(new Ror(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Rot()
+        {
+            var lower = Scanner.IsReservedKeyword("rot", 0, 3, []);
+            Assert.IsType<Rot>(lower);
+            Assert.Equal(new Rot(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("ROT", 0, 3, []);
+            Assert.IsType<Rot>(higher);
+            Assert.Equal(new Rot(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Set()
+        {
+            var lower = Scanner.IsReservedKeyword("set", 0, 3, []);
+            Assert.IsType<Set>(lower);
+            Assert.Equal(new Set(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SET", 0, 3, []);
+            Assert.IsType<Set>(higher);
+            Assert.Equal(new Set(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Set8()
+        {
+            var lower = Scanner.IsReservedKeyword("set8", 0, 4, []);
+            Assert.IsType<Set8>(lower);
+            Assert.Equal(new Set8(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SET8", 0, 4, []);
+            Assert.IsType<Set8>(higher);
+            Assert.Equal(new Set8(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Set16()
+        {
+            var lower = Scanner.IsReservedKeyword("set16", 0, 5, []);
+            Assert.IsType<Set16>(lower);
+            Assert.Equal(new Set16(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SET16", 0, 5, []);
+            Assert.IsType<Set16>(higher);
+            Assert.Equal(new Set16(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Set32()
+        {
+            var lower = Scanner.IsReservedKeyword("set32", 0, 5, []);
+            Assert.IsType<Set32>(lower);
+            Assert.Equal(new Set32(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SET32", 0, 5, []);
+            Assert.IsType<Set32>(higher);
+            Assert.Equal(new Set32(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Set64()
+        {
+            var lower = Scanner.IsReservedKeyword("set64", 0, 5, []);
+            Assert.IsType<Set64>(lower);
+            Assert.Equal(new Set64(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SET64", 0, 5, []);
+            Assert.IsType<Set64>(higher);
+            Assert.Equal(new Set64(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Shl()
+        {
+            var lower = Scanner.IsReservedKeyword("shl", 0, 3, []);
+            Assert.IsType<Shl>(lower);
+            Assert.Equal(new Shl(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SHL", 0, 3, []);
+            Assert.IsType<Shl>(higher);
+            Assert.Equal(new Shl(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Short()
+        {
+            var lower = Scanner.IsReservedKeyword("short", 0, 5, []);
+            Assert.IsType<Short>(lower);
+            Assert.Equal(new Short(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SHORT", 0, 5, []);
+            Assert.IsType<Short>(higher);
+            Assert.Equal(new Short(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Shr()
+        {
+            var lower = Scanner.IsReservedKeyword("shr", 0, 3, []);
+            Assert.IsType<Shr>(lower);
+            Assert.Equal(new Shr(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SHR", 0, 3, []);
+            Assert.IsType<Shr>(higher);
+            Assert.Equal(new Shr(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_SizeOf()
+        {
+            var lower = Scanner.IsReservedKeyword("sizeof", 0, 6, []);
+            Assert.IsType<SizeOf>(lower);
+            Assert.Equal(new SizeOf(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SIZEOF", 0, 6, []);
+            Assert.IsType<SizeOf>(higher);
+            Assert.Equal(new SizeOf(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Step()
+        {
+            var lower = Scanner.IsReservedKeyword("step", 0, 4, []);
+            Assert.IsType<Step>(lower);
+            Assert.Equal(new Step(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("STEP", 0, 4, []);
+            Assert.IsType<Step>(higher);
+            Assert.Equal(new Step(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Sum()
+        {
+            var lower = Scanner.IsReservedKeyword("sum", 0, 3, []);
+            Assert.IsType<Sum>(lower);
+            Assert.Equal(new Sum(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SUM", 0, 3, []);
+            Assert.IsType<Sum>(higher);
+            Assert.Equal(new Sum(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Signed8()
+        {
+            var lower = Scanner.IsReservedKeyword("signed8", 0, 7, []);
+            Assert.IsType<Signed8>(lower);
+            Assert.Equal(new Signed8(0, 7, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SIGNED8", 0, 7, []);
+            Assert.IsType<Signed8>(higher);
+            Assert.Equal(new Signed8(0, 7, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Signed16()
+        {
+            var lower = Scanner.IsReservedKeyword("signed16", 0, 8, []);
+            Assert.IsType<Signed16>(lower);
+            Assert.Equal(new Signed16(0, 8, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SIGNED16", 0, 8, []);
+            Assert.IsType<Signed16>(higher);
+            Assert.Equal(new Signed16(0, 8, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Signed32()
+        {
+            var lower = Scanner.IsReservedKeyword("signed32", 0, 8, []);
+            Assert.IsType<Signed32>(lower);
+            Assert.Equal(new Signed32(0, 8, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SIGNED32", 0, 8, []);
+            Assert.IsType<Signed32>(higher);
+            Assert.Equal(new Signed32(0, 8, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Signed64()
+        {
+            var lower = Scanner.IsReservedKeyword("signed64", 0, 8, []);
+            Assert.IsType<Signed64>(lower);
+            Assert.Equal(new Signed64(0, 8, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SIGNED64", 0, 8, []);
+            Assert.IsType<Signed64>(higher);
+            Assert.Equal(new Signed64(0, 8, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Unsigned8()
+        {
+            var lower = Scanner.IsReservedKeyword("unsigned8", 0, 9, []);
+            Assert.IsType<Unsigned8>(lower);
+            Assert.Equal(new Unsigned8(0, 9, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("UNSIGNED8", 0, 9, []);
+            Assert.IsType<Unsigned8>(higher);
+            Assert.Equal(new Unsigned8(0, 9, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Unsigned16()
+        {
+            var lower = Scanner.IsReservedKeyword("unsigned16", 0, 10, []);
+            Assert.IsType<Unsigned16>(lower);
+            Assert.Equal(new Unsigned16(0, 10, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("UNSIGNED16", 0, 10, []);
+            Assert.IsType<Unsigned16>(higher);
+            Assert.Equal(new Unsigned16(0, 10, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Unsigned32()
+        {
+            var lower = Scanner.IsReservedKeyword("unsigned32", 0, 10, []);
+            Assert.IsType<Unsigned32>(lower);
+            Assert.Equal(new Unsigned32(0, 10, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("UNSIGNED32", 0, 10, []);
+            Assert.IsType<Unsigned32>(higher);
+            Assert.Equal(new Unsigned32(0, 10, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedMethods_Unsigned64()
+        {
+            var lower = Scanner.IsReservedKeyword("unsigned64", 0, 10, []);
+            Assert.IsType<Unsigned64>(lower);
+            Assert.Equal(new Unsigned64(0, 10, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("UNSIGNED64", 0, 10, []);
+            Assert.IsType<Unsigned64>(higher);
+            Assert.Equal(new Unsigned64(0, 10, []), higher);
+        }
 
         [Fact]
         public void TestScannerReservedKeyword()
