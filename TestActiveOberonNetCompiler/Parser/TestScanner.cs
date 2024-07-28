@@ -1,6 +1,7 @@
 ﻿
 using ActiveOberonNetCompiler.Parser;
 using Assert = Xunit.Assert;
+using Record = ActiveOberonNetCompiler.Parser.Record;
 
 namespace TestActiveOberonNetCompiler.Parser
 {
@@ -657,6 +658,319 @@ namespace TestActiveOberonNetCompiler.Parser
             Assert.IsType<Loop>(higher);
             Assert.Equal(new Loop(0, 4, []), higher);
         }
+
+        [Fact]
+        public void TestReservedKeyword_Module()
+        {
+            var lower = Scanner.IsReservedKeyword("module", 0, 6, []);
+            Assert.IsType<Module>(lower);
+            Assert.Equal(new Module(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("MODULE", 0, 6, []);
+            Assert.IsType<Module>(higher);
+            Assert.Equal(new Module(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Mod()
+        {
+            var lower = Scanner.IsReservedKeyword("mod", 0, 3, []);
+            Assert.IsType<Mod>(lower);
+            Assert.Equal(new Mod(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("MOD", 0, 3, []);
+            Assert.IsType<Mod>(higher);
+            Assert.Equal(new Mod(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Nil()
+        {
+            var lower = Scanner.IsReservedKeyword("nil", 0, 3, []);
+            Assert.IsType<Nil>(lower);
+            Assert.Equal(new Nil(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("NIL", 0, 3, []);
+            Assert.IsType<Nil>(higher);
+            Assert.Equal(new Nil(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Object()
+        {
+            var lower = Scanner.IsReservedKeyword("object", 0, 6, []);
+            Assert.IsType<ActiveOberonNetCompiler.Parser.Object>(lower);
+            Assert.Equal(new ActiveOberonNetCompiler.Parser.Object(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("OBJECT", 0, 6, []);
+            Assert.IsType<ActiveOberonNetCompiler.Parser.Object>(higher);
+            Assert.Equal(new ActiveOberonNetCompiler.Parser.Object(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Of()
+        {
+            var lower = Scanner.IsReservedKeyword("of", 0, 2, []);
+            Assert.IsType<Of>(lower);
+            Assert.Equal(new Of(0, 2, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("OF", 0, 2, []);
+            Assert.IsType<Of>(higher);
+            Assert.Equal(new Of(0, 2, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Or()
+        {
+            var lower = Scanner.IsReservedKeyword("or", 0, 2, []);
+            Assert.IsType<Or>(lower);
+            Assert.Equal(new Or(0, 2, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("OR", 0, 2, []);
+            Assert.IsType<Or>(higher);
+            Assert.Equal(new Or(0, 2, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Out()
+        {
+            var lower = Scanner.IsReservedKeyword("out", 0, 3, []);
+            Assert.IsType<Out>(lower);
+            Assert.Equal(new Out(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("OUT", 0, 3, []);
+            Assert.IsType<Out>(higher);
+            Assert.Equal(new Out(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Operator()
+        {
+            var lower = Scanner.IsReservedKeyword("operator", 0, 8, []);
+            Assert.IsType<Operator>(lower);
+            Assert.Equal(new Operator(0, 8, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("OPERATOR", 0, 8, []);
+            Assert.IsType<Operator>(higher);
+            Assert.Equal(new Operator(0, 8, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Pointer()
+        {
+            var lower = Scanner.IsReservedKeyword("pointer", 0, 7, []);
+            Assert.IsType<Pointer>(lower);
+            Assert.Equal(new Pointer(0, 7, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("POINTER", 0, 7, []);
+            Assert.IsType<Pointer>(higher);
+            Assert.Equal(new Pointer(0, 7, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Procedure()
+        {
+            var lower = Scanner.IsReservedKeyword("procedure", 0, 9, []);
+            Assert.IsType<Procedure>(lower);
+            Assert.Equal(new Procedure(0, 9, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("PROCEDURE", 0, 9, []);
+            Assert.IsType<Procedure>(higher);
+            Assert.Equal(new Procedure(0, 9, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Port()
+        {
+            var lower = Scanner.IsReservedKeyword("port", 0, 4, []);
+            Assert.IsType<Port>(lower);
+            Assert.Equal(new Port(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("PORT", 0, 4, []);
+            Assert.IsType<Port>(higher);
+            Assert.Equal(new Port(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Repeat()
+        {
+            var lower = Scanner.IsReservedKeyword("repeat", 0, 6, []);
+            Assert.IsType<Repeat>(lower);
+            Assert.Equal(new Repeat(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("REPEAT", 0, 6, []);
+            Assert.IsType<Repeat>(higher);
+            Assert.Equal(new Repeat(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Return()
+        {
+            var lower = Scanner.IsReservedKeyword("return", 0, 6, []);
+            Assert.IsType<Return>(lower);
+            Assert.Equal(new Return(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("RETURN", 0, 6, []);
+            Assert.IsType<Return>(higher);
+            Assert.Equal(new Return(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Self()
+        {
+            var lower = Scanner.IsReservedKeyword("self", 0, 4, []);
+            Assert.IsType<Self>(lower);
+            Assert.Equal(new Self(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SELF", 0, 4, []);
+            Assert.IsType<Self>(higher);
+            Assert.Equal(new Self(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_New()
+        {
+            var lower = Scanner.IsReservedKeyword("new", 0, 3, []);
+            Assert.IsType<New>(lower);
+            Assert.Equal(new New(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("NEW", 0, 3, []);
+            Assert.IsType<New>(higher);
+            Assert.Equal(new New(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Record()
+        {
+            var lower = Scanner.IsReservedKeyword("record", 0, 6, []);
+            Assert.IsType<Record>(lower);
+            Assert.Equal(new Record(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("RECORD", 0, 6, []);
+            Assert.IsType<Record>(higher);
+            Assert.Equal(new Record(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Result()
+        {
+            var lower = Scanner.IsReservedKeyword("result", 0, 6, []);
+            Assert.IsType<Result>(lower);
+            Assert.Equal(new Result(0, 6, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("RESULT", 0, 6, []);
+            Assert.IsType<Result>(higher);
+            Assert.Equal(new Result(0, 6, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Size()
+        {
+            var lower = Scanner.IsReservedKeyword("size", 0, 4, []);
+            Assert.IsType<Size>(lower);
+            Assert.Equal(new Size(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("SIZE", 0, 4, []);
+            Assert.IsType<Size>(higher);
+            Assert.Equal(new Size(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Then()
+        {
+            var lower = Scanner.IsReservedKeyword("then", 0, 4, []);
+            Assert.IsType<Then>(lower);
+            Assert.Equal(new Then(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("THEN", 0, 4, []);
+            Assert.IsType<Then>(higher);
+            Assert.Equal(new Then(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_True()
+        {
+            var lower = Scanner.IsReservedKeyword("true", 0, 4, []);
+            Assert.IsType<True>(lower);
+            Assert.Equal(new True(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("TRUE", 0, 4, []);
+            Assert.IsType<True>(higher);
+            Assert.Equal(new True(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_To()
+        {
+            var lower = Scanner.IsReservedKeyword("to", 0, 2, []);
+            Assert.IsType<To>(lower);
+            Assert.Equal(new To(0, 2, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("TO", 0, 2, []);
+            Assert.IsType<To>(higher);
+            Assert.Equal(new To(0, 2, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Type()
+        {
+            var lower = Scanner.IsReservedKeyword("type", 0, 4, []);
+            Assert.IsType<ActiveOberonNetCompiler.Parser.Type>(lower);
+            Assert.Equal(new ActiveOberonNetCompiler.Parser.Type(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("TYPE", 0, 4, []);
+            Assert.IsType<ActiveOberonNetCompiler.Parser.Type>(higher);
+            Assert.Equal(new ActiveOberonNetCompiler.Parser.Type(0, 4, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Until()
+        {
+            var lower = Scanner.IsReservedKeyword("until", 0, 5, []);
+            Assert.IsType<Until>(lower);
+            Assert.Equal(new Until(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("UNTIL", 0, 5, []);
+            Assert.IsType<Until>(higher);
+            Assert.Equal(new Until(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_Var()
+        {
+            var lower = Scanner.IsReservedKeyword("var", 0, 3, []);
+            Assert.IsType<Var>(lower);
+            Assert.Equal(new Var(0, 3, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("VAR", 0, 3, []);
+            Assert.IsType<Var>(higher);
+            Assert.Equal(new Var(0, 3, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_While()
+        {
+            var lower = Scanner.IsReservedKeyword("while", 0, 5, []);
+            Assert.IsType<While>(lower);
+            Assert.Equal(new While(0, 5, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("WHILE", 0, 5, []);
+            Assert.IsType<While>(higher);
+            Assert.Equal(new While(0, 5, []), higher);
+        }
+
+        [Fact]
+        public void TestReservedKeyword_With()
+        {
+            var lower = Scanner.IsReservedKeyword("with", 0, 4, []);
+            Assert.IsType<With>(lower);
+            Assert.Equal(new With(0, 4, []), lower);
+
+            var higher = Scanner.IsReservedKeyword("WITH", 0, 4, []);
+            Assert.IsType<With>(higher);
+            Assert.Equal(new With(0, 4, []), higher);
+        }
+
 
 
 

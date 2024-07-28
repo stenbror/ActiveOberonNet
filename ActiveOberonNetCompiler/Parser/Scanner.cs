@@ -110,6 +110,7 @@ namespace ActiveOberonNetCompiler.Parser
                 "result" or "RESULT" => new Result(start, end, trivias),
                 "size" or "SIZE" => new Size(start, end, trivias),
                 "then" or "THEN" => new Then(start, end, trivias),
+                "true" or "TRUE" => new True(start, end, trivias),
                 "to" or "TO" => new To(start, end, trivias),
                 "type" or "TYPE" => new Type(start, end, trivias),
                 "until" or "UNTIL" => new Until(start, end, trivias),
