@@ -2,6 +2,8 @@
 namespace ActiveOberonNetCompiler.Parser
 {
     public record Symbols(uint StartPos, uint EndPos, Trivia[] Trivias);
+
+    public record Empty() : Symbols(0, 0, []);
     public record EndOfFile(uint StartPos, Trivia[] Trivias) : Symbols(StartPos, 0, Trivias);
 
     public record Address(uint StartPos, uint EndPos, Trivia[] Trivias) : Symbols(StartPos, EndPos, Trivias);
